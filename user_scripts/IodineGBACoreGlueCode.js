@@ -241,6 +241,18 @@ function registerGUIEvents() {
     addEvent("keydown", document, keyDown);
     addEvent("keyup", document, keyUpPreprocess);
     addEvent("unload", window, ExportSave);
+
+    // Turbo toggle keybinds
+    window.addEventListener("keydown", function (e) {
+        if (e.code === "KeyT") {
+            Iodine.setSpeed(2048); // Turbo mode
+            console.log("Turbo mode ON");
+        } else if (e.code === "KeyR") {
+            Iodine.setSpeed(512); // Normal mode
+            console.log("Turbo mode OFF");
+        }
+    });
+
     Iodine.attachSpeedHandler(function (speed) {
         document.title = games[location.hash.substr(1)] + " - " + speed;
     });
